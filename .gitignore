@@ -28,3 +28,4 @@ hs_err_pid*
 target
 out
 /get_last_commit_url.py
+/.gradle/
