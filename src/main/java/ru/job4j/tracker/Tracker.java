@@ -42,14 +42,16 @@ public class Tracker {
         return Arrays.copyOf(items, size);
     }
 
-    public Item findByName(String name) {
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
+    public Item[] findByName(String name) {
+        Item[] rsl = new Item[items.length];
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            Item item = items[i];
             if (name.equals(item.getName())) {
-                return item;
+                rsl[count++] = item;
             }
         }
-        return null;
+        return Arrays.copyOf(rsl, count);
     }
 
     public boolean delete(int id) {

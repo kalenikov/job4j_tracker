@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.nullValue;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 
 public class TrackerTest {
@@ -39,5 +40,19 @@ public class TrackerTest {
         int id = bug.getId();
         tracker.delete(id);
         assertThat(tracker.findById(id), is(nullValue()));
+    }
+
+    @Test
+    public void whenFindByName() {
+        Tracker tracker = new Tracker();
+        Item item1 = new Item();
+        item1.setName("test");
+        tracker.add(item1);
+        Item item2 = new Item();
+        item2.setName("test");
+        tracker.add(item2);
+        Item[] rsl = tracker.findByName("test");
+        Item[] expected = new Item[]{item1, item2};
+        assertArrayEquals(rsl, expected);
     }
 }
