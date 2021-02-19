@@ -29,7 +29,6 @@ public class StartUI {
                 System.out.print("Enter new item name: ");
                 String name = scanner.nextLine();
                 Item newItem = new Item(name);
-                tracker.add(newItem);
                 if (tracker.replace(id, newItem)) {
                     System.out.println("The operation was successful");
                 } else {
@@ -75,14 +74,14 @@ public class StartUI {
     }
 
     private void showMenu() {
-        String menu = "Menu\n" +
-                "0. Add new Item\n" +
-                "1. Show all items\n" +
-                "2. Edit item\n" +
-                "3. Delete item\n" +
-                "4. Find item by Id\n" +
-                "5. Find items by name\n" +
-                "6. Exit Program\n" +
+        String menu = "Menu" + System.lineSeparator() +
+                "0. Add new Item" + System.lineSeparator() +
+                "1. Show all items" + System.lineSeparator() +
+                "2. Edit item" + System.lineSeparator() +
+                "3. Delete item" + System.lineSeparator() +
+                "4. Find item by Id" + System.lineSeparator() +
+                "5. Find items by name" + System.lineSeparator() +
+                "6. Exit Program" + System.lineSeparator() +
                 "Select:";
         System.out.println(menu);
     }
