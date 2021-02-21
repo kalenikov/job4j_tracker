@@ -26,10 +26,10 @@ public class StartUI {
 
     public static void main(String[] args) {
         Input input = new ConsoleInput();
-        Output output = new ConsoleOutput();
+        Output out = new ConsoleOutput();
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateAction(output),
+                new CreateAction(out),
                 new ReplaceAction(out),
                 new DeleteAction(out),
                 new FindItemByIdAction(out),
@@ -37,6 +37,6 @@ public class StartUI {
                 new ShowAllAction(out),
                 new Exit()
         };
-        new StartUI(output).init(input, tracker, actions);
+        new StartUI(out).init(input, tracker, actions);
     }
 }
