@@ -115,10 +115,19 @@ public class StartUITest {
                 new ShowAllAction(out),
                 new Exit()
         };
+        String ln = System.lineSeparator();
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findAll().length, is(2));
-        assertThat(tracker.findAll()[0].getName(), is("item1"));
-        assertThat(tracker.findAll()[1].getName(), is("item2"));
+        assertThat(out.toString(), is(
+                "Menu." + ln +
+                        "0. === Show all items ====" + ln +
+                        "1. Exit" + ln +
+                        "=== Show all items ====" + ln +
+                        "Item{id=1, name='item1', created="+item1.getCreated()+"}" + ln +
+                        "Item{id=2, name='item2', created="+item2.getCreated()+"}" + ln +
+                        "Menu." + ln +
+                        "0. === Show all items ====" + ln +
+                        "1. Exit" + ln
+        ));
     }
 
     @Test
@@ -134,7 +143,7 @@ public class StartUITest {
                 new Exit()
         };
         new StartUI(out).init(in, tracker, actions);
-         assertThat(out.toString(), is(
+        assertThat(out.toString(), is(
                 "Menu." + System.lineSeparator()
                         + "0. === Find items by name ====" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()
