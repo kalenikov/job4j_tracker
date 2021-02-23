@@ -122,8 +122,8 @@ public class StartUITest {
                         "0. === Show all items ====" + ln +
                         "1. Exit" + ln +
                         "=== Show all items ====" + ln +
-                        "Item{id=1, name='item1', created="+item1.getCreated()+"}" + ln +
-                        "Item{id=2, name='item2', created="+item2.getCreated()+"}" + ln +
+                        item1 + ln +
+                        item2 + ln +
                         "Menu." + ln +
                         "0. === Show all items ====" + ln +
                         "1. Exit" + ln
