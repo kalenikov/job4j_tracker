@@ -65,7 +65,6 @@ public class Tracker {
         int index = indexOf(id);
         if (index == -1) return false;
         items.remove(index);
-        ids--;
         return true;
     }
 
