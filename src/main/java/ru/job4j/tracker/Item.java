@@ -1,8 +1,10 @@
 package ru.job4j.tracker;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDateTime;
 
-public class Item {
+public class Item implements Comparable<Item>{
     private int id;
     private String name;
     private LocalDateTime created = LocalDateTime.now();
@@ -51,5 +53,10 @@ public class Item {
 
     public LocalDateTime getCreated() {
         return created;
+    }
+
+    @Override
+    public int compareTo(@NotNull Item o) {
+        return Integer.compare(id, o.getId());
     }
 }
