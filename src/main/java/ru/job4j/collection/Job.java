@@ -2,7 +2,7 @@ package ru.job4j.collection;
 
 import org.jetbrains.annotations.NotNull;
 
-public class Job implements Comparable<Job>  {
+public class Job implements Comparable<Job> {
     private String name;
 
     private int priority;
