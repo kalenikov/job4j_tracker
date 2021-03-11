@@ -1,5 +1,6 @@
 package ru.job4j.collection;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Comparator;
@@ -10,8 +11,16 @@ import static org.junit.Assert.assertThat;
 
 public class JobTest {
 
-    static Job job1 = new Job("aaa", 10);
-    static Job job2 = new Job("bbb", 50);
+    private Job[] jobs;
+
+    @Before
+    public void setUp() {
+        jobs = new Job[]{
+                new Job("aaa", 10),
+                new Job("bbb", 50),
+                new Job("aaa", 1)
+        };
+    }
 
     @Test
     public void whenCompatorByNameAndPrority() {
@@ -26,31 +35,31 @@ public class JobTest {
     @Test
     public void whenCompatorByNameAsc() {
         Comparator<Job> cmp = new JobAscByName();
-        assertThat(cmp.compare(job1, job2), lessThan(0));
+        assertThat(cmp.compare(jobs[0], jobs[1]), lessThan(0));
     }
 
     @Test
     public void whenCompatorByNameDesc() {
         Comparator<Job> cmp = new JobDescByName();
-        assertThat(cmp.compare(job1, job2), greaterThan(0));
+        assertThat(cmp.compare(jobs[0], jobs[1]), greaterThan(0));
     }
 
 
     @Test
     public void whenCompatorByPriorityAsc() {
         Comparator<Job> cmp = new JobAscByPriority();
-        assertThat(cmp.compare(job1, job2), lessThan(0));
+        assertThat(cmp.compare(jobs[0], jobs[1]), lessThan(0));
     }
 
     @Test
     public void whenCompatorByPriorityDesc() {
         Comparator<Job> cmp = new JobDescByPriority();
-        assertThat(cmp.compare(job1, job2), greaterThan(0));
+        assertThat(cmp.compare(jobs[0], jobs[1]), greaterThan(0));
     }
 
-       @Test
-    public void whenCompatorByNameAscAndProrityAsc() {
-        Comparator<Job> cmp = new JobAscByName().thenComparing(new JobAscByPriority());
-        assertThat(cmp.compare(job1, job2), lessThan(0));
+    @Test
+    public void whenCompatorByNameAscAndProrityDesc() {
+        Comparator<Job> cmp = new JobAscByName().thenComparing(new JobDescByPriority());
+        assertThat(cmp.compare(jobs[0], jobs[2]), lessThan(0));
     }
 }
