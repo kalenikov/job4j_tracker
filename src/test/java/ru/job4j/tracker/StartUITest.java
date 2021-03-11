@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
 public class StartUITest {
 
     @After
-    public void clearTracker(){
+    public void clearTracker() {
         Tracker.getInstance().clear();
     }
 
@@ -116,15 +116,24 @@ public class StartUITest {
         String ln = System.lineSeparator();
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + ln +
-                        "0. === Show all items ====" + ln +
-                        "1. Exit" + ln +
-                        "=== Show all items ====" + ln +
-                        item1 + ln +
-                        item2 + ln +
-                        "Menu." + ln +
-                        "0. === Show all items ====" + ln +
-                        "1. Exit" + ln
+                "Menu."
+                        + ln
+                        + "0. === Show all items ===="
+                        + ln
+                        + "1. Exit"
+                        + ln
+                        + "=== Show all items ===="
+                        + ln
+                        + item1
+                        + ln
+                        + item2
+                        + ln
+                        + "Menu."
+                        + ln
+                        + "0. === Show all items ===="
+                        + ln
+                        + "1. Exit"
+                        + ln
         ));
     }
 

@@ -27,7 +27,9 @@ public class Tracker {
 
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
-        if (index == -1) return false;
+        if (index == -1) {
+            return false;
+        }
         item.setId(id);
         items.set(index, item);
         return true;
@@ -63,12 +65,14 @@ public class Tracker {
 
     public boolean delete(int id) {
         int index = indexOf(id);
-        if (index == -1) return false;
+        if (index == -1) {
+            return false;
+        }
         items.remove(index);
         return true;
     }
 
-    public void clear(){
+    public void clear() {
         items.clear();
     }
 }

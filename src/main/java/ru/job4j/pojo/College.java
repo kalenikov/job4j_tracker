@@ -9,8 +9,11 @@ public class College {
         student.setName("test name");
         student.setGroupId(1);
 
-        System.out.println("new student " + student.getName() +
-                " created at " + student.getCreated() +
-                " in group " + student.getGroupId());
+        System.out.println("new student "
+                + student.getName()
+                + " created at "
+                + student.getCreated()
+                + " in group "
+                + student.getGroupId());
     }
 }

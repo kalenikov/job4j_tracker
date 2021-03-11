@@ -8,11 +8,11 @@ public class Jukebox {
     }
 
     public void music(int position) {
-        String text = switch (position) {
-            case 1 -> "Пусть бегут неуклюже";
-            case 2 -> "Спокойной ночи";
-            default -> "Песня не найдена";
-        };
-        System.out.println(text);
+//        String text = switch (position) {
+//            case 1 -> "Пусть бегут неуклюже";
+//            case 2 -> "Спокойной ночи";
+//            default -> "Песня не найдена";
+//        };
+//        System.out.println(text);
     }
 }

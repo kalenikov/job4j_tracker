@@ -7,6 +7,8 @@ import java.util.Map;
 
 public class BankService {
 
+    private Map<User, List<Account>> users = new HashMap<>();
+
     public static void main(String[] args) {
         List<Account> accounts = new ArrayList<>();
         String requisite = "3fdsbb9";
@@ -15,8 +17,6 @@ public class BankService {
         Account find = accounts.get(index);
         System.out.println(find.getRequisite() + " -> " + find.getBalance());
     }
-
-    private Map<User, List<Account>> users = new HashMap<>();
 
     public void addUser(User user) {
         users.putIfAbsent(user, new ArrayList<>());
