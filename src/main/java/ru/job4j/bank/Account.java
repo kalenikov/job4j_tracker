@@ -2,6 +2,14 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * This model describes a bank account.
+ * Contains the following fields: account balance and account requisite
+ *
+ * @author - Sergey Kalenikov
+ * @version 1.0
+ */
+
 public class Account {
     private String requisite;
     private double balance;

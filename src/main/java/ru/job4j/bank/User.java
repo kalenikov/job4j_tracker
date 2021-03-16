@@ -2,6 +2,14 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * This model describes the bank user
+ * Contains the following fields: username and passport number
+ *
+ * @author - Sergey Kalenikov
+ * @version 1.0
+ */
+
 public class User {
     private String passport;
     private String username;
