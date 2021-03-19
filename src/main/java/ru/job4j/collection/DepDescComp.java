@@ -5,18 +5,12 @@ import java.util.Comparator;
 public class DepDescComp implements Comparator<String> {
     @Override
     public int compare(String o1, String o2) {
-        int i1 = o1.indexOf("/");
-        int i2 = o2.indexOf("/");
-        if (i1 == -1) {
-            return -1;
+        String[] o1ar = o1.split("/");
+        String[] o2ar = o2.split("/");
+        int rsl = o1ar[0].compareTo(o2ar[0]);
+        if (rsl == 0) {
+            return o1.compareTo(o2);
         }
-        if (i2 == -1) {
-            return 1;
-        }
-        int r = o2.substring(0, i2).compareTo(o1.substring(0, i1));
-        if (r == 0) {
-            return o1.substring(i1).compareTo(o2.substring(i2));
-        }
-        return r;
+        return rsl;
     }
 }
