@@ -25,4 +25,21 @@ public class ProfilesTest {
         assertThat(rsl, is(expected));
     }
 
+    @Test
+    public void whenCollectSameAddresses() {
+        List<Profile> profiles = List.of(
+                new Profile(new Address("city3", "street3", 3, 3)),
+                new Profile(new Address("city1", "street1", 1, 1)),
+                new Profile(new Address("city2", "street2", 2, 2)),
+                new Profile(new Address("city1", "street1", 1, 1))
+        );
+        List<Address> expected = List.of(
+                new Address("city1", "street1", 1, 1),
+                new Address("city2", "street2", 2, 2),
+                new Address("city3", "street3", 3, 3)
+        );
+        List<Address> rsl = new Profiles().collect(profiles);
+        assertThat(rsl, is(expected));
+    }
+
 }
