@@ -14,8 +14,6 @@ public class Dictionary {
                 });
             }
         }
-
-        System.out.println(map);
         return map;
     }
 }
