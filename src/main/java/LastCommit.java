@@ -33,7 +33,6 @@ public class LastCommit {
             System.out.println(commitJSON.get("html_url"));
             JSONObject commitInfoJSON = (JSONObject) commitJSON.get("commit");
             System.out.println(commitInfoJSON.get("message"));
-            System.out.println();
         }
 
     }
