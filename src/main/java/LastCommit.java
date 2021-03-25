@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class LastCommit {
     String OWNER = "kalenikov";
     String REPO = "job4j_tracker";
-    int LIMIT = 1;
+    int LIMIT = 10;
     String URL_STRING = String.format("https://api.github.com/repos/%s/%s/commits?per_page=%d",
             OWNER,
             REPO,
