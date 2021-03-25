@@ -15,8 +15,10 @@ public class School {
     public Map<String, Student> collectToMap(List<Student> students, Predicate<Student> predict) {
         return students.stream()
                 .filter(predict)
-                .distinct()
-                .collect(Collectors.toMap(Student::getSurname, e -> e));
+                .collect(Collectors.toMap(
+                        Student::getSurname,
+                        e -> e,
+                        (k1, k2) -> k1));
     }
 
 }
