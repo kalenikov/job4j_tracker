@@ -1,6 +1,6 @@
 package ru.job4j.stream;
 
-public class User {
+public class UserOld {
     private String name;
     private String surname;
     private byte age;
@@ -66,8 +66,8 @@ public class User {
             return this;
         }
 
-        User build() {
-            User user = new User();
+        UserOld build() {
+            UserOld user = new UserOld();
             user.name = name;
             user.surname = surname;
             user.age = age;
@@ -80,7 +80,7 @@ public class User {
     }
 
     public static void main(String[] args) {
-        User user = new Builder().buildName("name")
+        UserOld user = new Builder().buildName("name")
                 .buildSurname("surname")
                 .buildAge((byte) 32)
                 .buildLogin("login")
