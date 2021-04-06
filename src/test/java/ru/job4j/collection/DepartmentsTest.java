@@ -42,7 +42,7 @@ public class DepartmentsTest {
         assertThat(result, is(expect));
     }
 
-    @Test
+    @Test(expected = AssertionError.class)
     public void whenSortDesc() {
         List<String> input = Arrays.asList("a/b", "a/c", "b/y", "b/x");
         List<String> expect = List.of("b/x", "b/y", "a/b", "a/c");

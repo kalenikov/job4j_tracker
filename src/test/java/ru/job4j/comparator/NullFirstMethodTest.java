@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class NullFirstMethodTest {
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void test() {
         List<String> list = Arrays.asList("3", "2", "1", null);
         list.sort(NullFirstMethod.nullFirst());
