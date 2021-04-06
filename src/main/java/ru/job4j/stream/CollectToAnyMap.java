@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 public class CollectToAnyMap {
     public static Map<Integer, Integer> collect(Stream<Integer> data) {
-        return data.collect(Collectors.toMap(k -> k, v -> v*v, (prev, curr) -> prev, LinkedHashMap::new));
+        return data.collect(Collectors.toMap(k -> k, v -> v * v,
+                (prev, curr) -> prev, LinkedHashMap::new));
     }
 }

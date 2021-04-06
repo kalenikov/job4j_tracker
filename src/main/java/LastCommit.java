@@ -9,16 +9,16 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class LastCommit {
-    String OWNER = "kalenikov";
-    String REPO = "job4j_tracker";
-    int LIMIT = 10;
-    String URL_STRING = String.format("https://api.github.com/repos/%s/%s/commits?per_page=%d",
-            OWNER,
-            REPO,
-            LIMIT);
+    private final String owner = "kalenikov";
+    private final String repo = "job4j_tracker";
+    private final int limit = 10;
+    private final String urlString = String.format("https://api.github.com/repos/%s/%s/commits?per_page=%d",
+            owner,
+            repo,
+            limit);
 
-    public void Get() throws IOException, ParseException {
-        URL url = new URL(URL_STRING);
+    public void getCommits() throws IOException, ParseException {
+        URL url = new URL(urlString);
         Scanner in = new Scanner((InputStream) url.getContent());
         StringBuilder result = new StringBuilder();
         while (in.hasNext()) {
@@ -38,7 +38,7 @@ public class LastCommit {
     }
 
     public static void main(String[] args) throws IOException, ParseException {
-        new LastCommit().Get();
+        new LastCommit().getCommits();
     }
 
 }

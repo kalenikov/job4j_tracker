@@ -52,6 +52,7 @@ public class ArticleTest {
                 is(true)
         );
     }
+
     @Test
     public void whenLongTextFalse() {
         assertThat(
