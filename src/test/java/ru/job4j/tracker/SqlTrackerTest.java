@@ -6,12 +6,13 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.nullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
-public class TrackerTest {
+public class SqlTrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = Tracker.getInstance();
+        SqlTracker tracker = SqlTracker.getInstance();
         Item item = new Item();
         item.setName("test1");
         tracker.add(item);
@@ -21,7 +22,7 @@ public class TrackerTest {
 
     @Test
     public void whenReplace() {
-        Tracker tracker = Tracker.getInstance();
+        SqlTracker tracker = SqlTracker.getInstance();
         Item bug = new Item();
         bug.setName("Bug");
         tracker.add(bug);
@@ -34,7 +35,7 @@ public class TrackerTest {
 
     @Test
     public void whenDelete() {
-        Tracker tracker = Tracker.getInstance();
+        SqlTracker tracker = SqlTracker.getInstance();
         Item bug = new Item();
         bug.setName("Bug");
         tracker.add(bug);
@@ -45,7 +46,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindByName() {
-        Tracker tracker = Tracker.getInstance();
+        SqlTracker tracker = SqlTracker.getInstance();
         Item item1 = new Item();
         item1.setName("test");
         tracker.add(item1);

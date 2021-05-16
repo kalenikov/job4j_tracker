@@ -13,7 +13,7 @@ public class StartUITest {
 
     @After
     public void clearTracker() {
-        Tracker.getInstance().clear();
+        MemTracker.getInstance().clear();
     }
 
 //    @Test
@@ -33,7 +33,7 @@ public class StartUITest {
     @Test
     public void whenReplaceItem() {
         Output out = new StubOutput();
-        Tracker tracker = Tracker.getInstance();
+        Store tracker = SqlTracker.getInstance();
         Item item = tracker.add(new Item("Replaced item"));
         /* Входные данные должны содержать ID добавленной заявки item.getId() */
         String replacedName = "New item name";
@@ -50,7 +50,7 @@ public class StartUITest {
     @Test
     public void whenDeleteItem() {
         Output out = new StubOutput();
-        Tracker tracker = Tracker.getInstance();
+        Store tracker = SqlTracker.getInstance();
         /* Добавим в tracker новую заявку */
         Item item = tracker.add(new Item("Deleted item"));
         /* Входные данные должны содержать ID добавленной заявки item.getId() */
@@ -69,7 +69,7 @@ public class StartUITest {
     public void whenExit() {
         Output out = new StubOutput();
         Input in = new StubInput(List.of("0"));
-        Tracker tracker = Tracker.getInstance();
+        Store tracker = SqlTracker.getInstance();
         List<UserAction> actions = List.of(new Exit());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
@@ -81,7 +81,7 @@ public class StartUITest {
     @Test
     public void whenFindById() {
         Output out = new StubOutput();
-        Tracker tracker = Tracker.getInstance();
+        Store tracker = SqlTracker.getInstance();
         Item item = tracker.add(new Item("item1"));
         Input in = new StubInput(
                 List.of("0", String.valueOf(item.getId()), "1"));
@@ -106,7 +106,7 @@ public class StartUITest {
     public void whenShowAll() {
         Output out = new StubOutput();
         Input in = new StubInput(List.of("0", "1"));
-        Tracker tracker = Tracker.getInstance();
+        Store tracker = SqlTracker.getInstance();
         Item item1 = tracker.add(new Item("item1"));
         Item item2 = tracker.add(new Item("item2"));
         List<UserAction> actions = List.of(
@@ -140,7 +140,7 @@ public class StartUITest {
     @Test
     public void whenFindByName() {
         Output out = new StubOutput();
-        Tracker tracker = Tracker.getInstance();
+        Store tracker = SqlTracker.getInstance();
         Item item = tracker.add(new Item("item1"));
         Input in = new StubInput(List.of("0", String.valueOf(item.getName()), "1"));
         List<UserAction> actions = List.of(
@@ -164,7 +164,7 @@ public class StartUITest {
     public void whenInvalidExit() {
         Output out = new StubOutput();
         Input in = new StubInput(List.of("10", "0"));
-        Tracker tracker = Tracker.getInstance();
+        Store tracker = SqlTracker.getInstance();
         List<UserAction> actions = List.of(new Exit());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
