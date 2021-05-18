@@ -1,9 +1,15 @@
 package ru.job4j.tracker;
 
 import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.Is.is;
@@ -11,29 +17,48 @@ import static org.junit.Assert.assertThat;
 
 public class StartUITest {
 
+    private static Connection cn;
+    private static Store tracker;
+
+    @BeforeClass
+    public static void init() throws SQLException {
+        try (InputStream in = StartUITest.class.getClassLoader().getResourceAsStream("app.properties")) {
+            Properties config = new Properties();
+            config.load(in);
+            Class.forName(config.getProperty("driver-class-name"));
+            cn = DriverManager.getConnection(
+                    config.getProperty("url"),
+                    config.getProperty("username"),
+                    config.getProperty("password")
+            );
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
+        tracker = new SqlTracker(ConnectionRollbackProxy.create(cn));
+    }
+
     @After
     public void clearTracker() {
         MemTracker.getInstance().clear();
+        ((SqlTracker) tracker).clear();
     }
 
-//    @Test
-//    public void whenCreateItem() {
-//        Output out = new StubOutput();
-//        Input in = new StubInput(List.of("0", "Item name", "1"));
-//        Tracker tracker = Tracker.getInstance();
-//        List<UserAction> actions = List.of(
-//                new CreateAction(out),
-//                new Exit()
-//        );
-//        new StartUI(out).init(in, tracker, actions);
-//        assertThat(tracker.findAll().get(0).getName(), is("Item name"));
-//    }
+    @Test
+    public void whenCreateItem() throws SQLException {
+        Output out = new StubOutput();
+        Input in = new StubInput(List.of("0", "Item name", "1"));
+        List<UserAction> actions = List.of(
+                new CreateAction(out),
+                new Exit()
+        );
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(tracker.findAll().get(0).getName(), is("item1"));
+    }
 
 
     @Test
-    public void whenReplaceItem() {
+    public void whenReplaceItem() throws SQLException {
         Output out = new StubOutput();
-        Store tracker = SqlTracker.getInstance();
         Item item = tracker.add(new Item("Replaced item"));
         /* Входные данные должны содержать ID добавленной заявки item.getId() */
         String replacedName = "New item name";
@@ -48,9 +73,8 @@ public class StartUITest {
     }
 
     @Test
-    public void whenDeleteItem() {
+    public void whenDeleteItem() throws SQLException {
         Output out = new StubOutput();
-        Store tracker = SqlTracker.getInstance();
         /* Добавим в tracker новую заявку */
         Item item = tracker.add(new Item("Deleted item"));
         /* Входные данные должны содержать ID добавленной заявки item.getId() */
@@ -66,10 +90,9 @@ public class StartUITest {
     }
 
     @Test
-    public void whenExit() {
+    public void whenExit() throws SQLException {
         Output out = new StubOutput();
         Input in = new StubInput(List.of("0"));
-        Store tracker = SqlTracker.getInstance();
         List<UserAction> actions = List.of(new Exit());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
@@ -79,9 +102,8 @@ public class StartUITest {
     }
 
     @Test
-    public void whenFindById() {
+    public void whenFindById() throws SQLException {
         Output out = new StubOutput();
-        Store tracker = SqlTracker.getInstance();
         Item item = tracker.add(new Item("item1"));
         Input in = new StubInput(
                 List.of("0", String.valueOf(item.getId()), "1"));
@@ -103,10 +125,9 @@ public class StartUITest {
     }
 
     @Test
-    public void whenShowAll() {
+    public void whenShowAll() throws SQLException {
         Output out = new StubOutput();
         Input in = new StubInput(List.of("0", "1"));
-        Store tracker = SqlTracker.getInstance();
         Item item1 = tracker.add(new Item("item1"));
         Item item2 = tracker.add(new Item("item2"));
         List<UserAction> actions = List.of(
@@ -138,9 +159,8 @@ public class StartUITest {
     }
 
     @Test
-    public void whenFindByName() {
+    public void whenFindByName() throws SQLException {
         Output out = new StubOutput();
-        Store tracker = SqlTracker.getInstance();
         Item item = tracker.add(new Item("item1"));
         Input in = new StubInput(List.of("0", String.valueOf(item.getName()), "1"));
         List<UserAction> actions = List.of(
@@ -161,10 +181,9 @@ public class StartUITest {
     }
 
     @Test
-    public void whenInvalidExit() {
+    public void whenInvalidExit() throws SQLException {
         Output out = new StubOutput();
         Input in = new StubInput(List.of("10", "0"));
-        Store tracker = SqlTracker.getInstance();
         List<UserAction> actions = List.of(new Exit());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(

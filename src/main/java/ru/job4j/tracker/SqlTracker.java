@@ -135,6 +135,14 @@ public class SqlTracker implements Store {
         return null;
     }
 
+    public void clear() {
+        try (PreparedStatement ps = cn.prepareStatement("delete from items;")) {
+            ps.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     @Override
     public void close() throws Exception {
         if (cn != null) {
