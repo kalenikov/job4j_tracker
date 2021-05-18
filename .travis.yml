@@ -8,8 +8,8 @@ services:
 
 before_install:
   - psql -c 'create database tracker;' -U postgres
-  - psql -c 'create user serj with encrypted password '123';' -U postgres
-  - psql -c 'grant all privileges on database tracker to serj;' -U postgres
+#  - psql -c 'create user serj with encrypted password '123';' -U postgres
+#  - psql -c 'grant all privileges on database tracker to serj;' -U postgres
 
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
