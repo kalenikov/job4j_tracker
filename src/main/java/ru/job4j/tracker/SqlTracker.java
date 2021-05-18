@@ -14,6 +14,10 @@ public class SqlTracker implements Store {
     private SqlTracker() {
     }
 
+    public SqlTracker(Connection connection) {
+        this.cn = connection;
+    }
+
     public static SqlTracker getInstance() {
         if (instance == null) {
             instance = new SqlTracker();
