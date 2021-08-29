@@ -26,6 +26,9 @@ public class HibernateRun {
             for (Item it : list) {
                 System.out.println(it);
             }
+            create(new Item("new item1", "description1"), sf);
+            create(new Item("new item2", "description2"), sf);
+            System.out.println(findAll(sf));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
