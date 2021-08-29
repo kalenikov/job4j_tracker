@@ -2,16 +2,20 @@ package ru.job4j.tracker;
 
 import org.jetbrains.annotations.NotNull;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "items")
 public class Item implements Comparable<Item> {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private LocalDateTime created = LocalDateTime.now();
+    private final LocalDateTime created = LocalDateTime.now();
 
     public Item() {
-
     }
 
     public Item(int id) {
