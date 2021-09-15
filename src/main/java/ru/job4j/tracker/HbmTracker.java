@@ -37,7 +37,10 @@ public class HbmTracker implements Store {
     public boolean replace(int id, Item item) {
         Session session = sf.openSession();
         session.beginTransaction();
-        session.update(item);
+        session.createQuery("update Item i set i.name = :name where i.id = :id")
+                .setParameter("name", item.getName())
+                .setParameter("id", id)
+                .executeUpdate();
         session.getTransaction().commit();
         session.close();
         return true;
@@ -82,7 +85,10 @@ public class HbmTracker implements Store {
     public Item findById(int id) {
         Session session = sf.openSession();
         session.beginTransaction();
-        Item result = (Item) session.createQuery("from Item where id=?").uniqueResult();
+        Item result = session
+                .createQuery("from Item where id=:id", Item.class)
+                .setParameter("id", id)
+                .uniqueResult();
         session.getTransaction().commit();
         session.close();
         return result;
@@ -93,6 +99,13 @@ public class HbmTracker implements Store {
         StandardServiceRegistryBuilder.destroy(registry);
     }
 
+    @Override
     public void init() {
+        Session session = sf.openSession();
+        session.beginTransaction();
+        session.createSQLQuery("truncate table items;").executeUpdate();
+        session.getTransaction().commit();
+        session.close();
     }
+
 }

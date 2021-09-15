@@ -20,7 +20,8 @@ public class MemTracker implements Store {
 
     @Override
     public void init() {
-
+        ids = 1;
+        items.clear();
     }
 
     public Item add(Item item) {

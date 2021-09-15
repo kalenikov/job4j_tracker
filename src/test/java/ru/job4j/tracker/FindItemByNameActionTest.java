@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -9,6 +10,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class FindItemByNameActionTest {
+
+    @Before
+    public void init() {
+        MemTracker.getInstance().init();
+    }
 
     @Test
     public void execute() {
