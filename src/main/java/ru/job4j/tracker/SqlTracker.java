@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Properties;
 
 
-public class SqlTracker implements Store {
+public class SqlTracker implements Store, ReactStore {
     private static SqlTracker instance;
     private Connection cn;
 
@@ -147,6 +147,23 @@ public class SqlTracker implements Store {
     public void close() throws Exception {
         if (cn != null) {
             cn.close();
+        }
+    }
+
+    @Override
+    public void findAll(Observe<Item> observe) {
+        try (Statement ps = cn.createStatement()) {
+            ps.executeQuery("select * from items order by id");
+            ResultSet rs = ps.getResultSet();
+            while (rs.next()) {
+                observe.receive(
+                        new Item(
+                                rs.getInt("id"),
+                                rs.getString("name")
+                        ));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 }
