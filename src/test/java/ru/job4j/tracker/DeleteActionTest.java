@@ -10,7 +10,6 @@ import static org.mockito.Mockito.when;
 
 public class DeleteActionTest {
 
-//    @Test
     public void execute() {
         Output out = new StubOutput();
         MemTracker tracker = MemTracker.getInstance();

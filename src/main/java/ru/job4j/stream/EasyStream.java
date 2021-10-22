@@ -7,7 +7,6 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class EasyStream {
-    // у каждого стрима будет свой билдер, в который мы загрузим копию исходного списка
     private Builder builder;
 
     private EasyStream(Builder builder) {
@@ -63,13 +62,6 @@ public class EasyStream {
 
     public static void main(String[] args) {
         var data = List.of(1, 2, 3, 4, 5);
-//        var collect = new Builder()
-//                .of(data)
-//                .filter(n -> n > 2)
-//                .map(n -> n * 10)
-//                .collect();
-//        System.out.println(collect);
-
         var collect = EasyStream.of(data)
                 .filter(n -> n > 2)
                 .map(n -> n * 10)

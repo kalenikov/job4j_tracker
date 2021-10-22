@@ -81,19 +81,7 @@ public class SummingMethod {
         }
     }
 
-    //Вам дан список пользователей, у каждого пользователя есть счет.
-    // Ваша задача найти сумму баланса для каждого пользователя.
-
     public static Map<String, Integer> summing(List<User> users) {
-//        return users.stream()
-//                .flatMap(
-//                        user -> user.getBills().stream()
-//                                .flatMap(bill -> Stream.of(new Pair(user, bill))))
-//                .collect(Collectors.groupingBy(
-//                        pair -> pair.getUser().getName(),
-//                        Collectors.summingInt(pair -> pair.getBill().balance))
-//                );
-
         return users.stream()
                 .flatMap(
                         user -> user.getBills().stream()
@@ -109,7 +97,6 @@ public class SummingMethod {
         var user1 = new User("user1", List.of(new Bill(10), new Bill(15)));
         var user2 = new User("user2", List.of(new Bill(50)));
 
-
         var users = List.of(user1, user2);
         var rsl = users.stream()
                 .flatMap(
@@ -121,25 +108,6 @@ public class SummingMethod {
                         )
                 );
         System.out.println(rsl);
-
-
-//        users.stream().collect(
-//                Collectors.groupingBy(
-//                        user -> user.getBills().stream().flatMap(bill -> Stream.of(bill))
-//                )
-//        );
-//        User user1 = new User("user1");
-//        var pair1 = new Pair(user1, new Bill(100));
-//        var pair2 = new Pair(user1, new Bill(200));
-//        List<Pair> pairs = List.of(pair1, pair2);
-//        var rsl = pairs.stream().collect(
-//                Collectors.groupingBy(
-//                        x -> x.getUser().getName(),
-//                        Collectors.summingInt(x -> x.getBill().balance)
-//                )
-//        );
-//        System.out.println(rsl.toString());
-
     }
 
 }

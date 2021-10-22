@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class ConsoleInput {
     private Scanner scanner = new Scanner(System.in);
 
+    public ConsoleInput(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     public String askStr(String question) {
         System.out.print(question);
         return scanner.nextLine();
@@ -14,7 +18,4 @@ public class ConsoleInput {
         return Integer.valueOf(askStr(question));
     }
 
-    public ConsoleInput(Scanner scanner) {
-        this.scanner = scanner;
-    }
 }

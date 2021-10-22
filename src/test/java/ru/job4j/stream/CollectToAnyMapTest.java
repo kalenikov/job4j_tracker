@@ -9,17 +9,6 @@ import static org.junit.Assert.*;
 
 public class CollectToAnyMapTest {
 
-//    @Test
-//    public void testContent() {
-//        List<Integer> data = List.of(2, 3, 3);
-//        Map<Integer, Integer> expect = Map.of(
-//                2, 4,
-//                3, 9
-//        );
-//        Map<Integer, Integer> result = CollectToMapWhenDublicate.collect(data.stream());
-//        assertEquals(expect, result);
-//    }
-
     @Test
     public void testClassName() {
         List<Integer> data = List.of();

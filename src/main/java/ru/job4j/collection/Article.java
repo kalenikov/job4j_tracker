@@ -6,9 +6,6 @@ import java.util.Set;
 
 public class Article {
     public static boolean generateBy(String origin, String line) {
-        // удаляем всю пунктуацию из строк,
-        // разбиваем по пробелам (один и более),
-        // собираем в множества и проверяем вхождение
         return stringToSet(origin).containsAll(stringToSet(line));
     }
 

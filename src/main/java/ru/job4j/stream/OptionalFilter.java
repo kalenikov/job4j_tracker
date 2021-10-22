@@ -47,11 +47,6 @@ public class OptionalFilter {
         }
     }
 
-//    public static List<Child> defineChildren(List<Worker> workers, String passport) {
-//        return workers.stream()
-//                .filter()
-//    }
-
     public static Optional<Worker> findByPassport(List<Worker> workers, String passport) {
         return workers.stream()
                 .filter(w -> w.getPassport().equals(passport))

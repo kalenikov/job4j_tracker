@@ -34,6 +34,5 @@ public class CollectorClass {
             return left;
         };
         return list.stream().collect(Collector.of(supplier, biConsumer, operator));
-//        return list.stream().collect(Collectors.toList());
     }
 }

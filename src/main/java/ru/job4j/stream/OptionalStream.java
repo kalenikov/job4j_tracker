@@ -39,7 +39,6 @@ public class OptionalStream {
         }
     }
 
-    //    Ваша задача найти тел. номера пользователя с заданным id, которые начинаются с region
     public static List<PhoneNumber> collectNumber(List<User> users, int id, String region) {
         return users.stream()
                 .filter(u -> id == u.id)

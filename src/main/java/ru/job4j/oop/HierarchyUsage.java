@@ -7,8 +7,5 @@ public class HierarchyUsage {
         Object object = car;
         Object ocar = new Car();
         Car carFromObject = (Car) ocar;
-
-//        Object bicycle = new Bicycle();
-//        Car cb = (Bicycle) bicycle;
     }
 }

@@ -20,14 +20,9 @@ public class HbmRun {
             Session session = sf.openSession();
             session.beginTransaction();
             Car car = Car.of("car2", Timestamp.valueOf(LocalDateTime.now()), "owner1");
-//            Car car = Car.of("car1", new Timestamp(1459510232000L), "owner1");
             session.save(car);
-//            Item item = create(new Item("Learn Hibernate"), sf);
-
             session.getTransaction().commit();
             session.close();
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
